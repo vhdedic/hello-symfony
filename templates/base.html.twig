@@ -16,6 +16,25 @@
         {% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom shadow-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('app_post_index') }}">Hello Symfony</a>
+                <ul class="nav navbar-nav ms-auto">
+                    {% if is_granted('ROLE_USER') %}
+                        <li>
+                            <a class="nav-link text-right" href="{{ path('app_logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="nav-link text-right" href="{{ path('app_register') }}">Register</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-right" href="{{ path('app_login') }}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
         <div class="container">
             {% block body %}{% endblock %}
         </div>
