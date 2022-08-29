@@ -4,7 +4,7 @@
 
 {% block body %}
 <h1 class="my-4">Log in</h1>
-<form method="post" class="border p-3 shadow-lg">
+<form method="post" class="border p-3 bg-light">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
