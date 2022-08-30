@@ -4,5 +4,17 @@
 
 {% block body %}
     <h1 class="my-4">Posts</h1>
-
+     <hr />
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.title }}</h2>
+            <span class="fw-bold">
+                {{ post.user.username }}
+            </span>
+            <p>
+                {{ post.body | slice(0,100) }}
+            </p>
+            <hr />
+        </div>
+    {% endfor %}
 {% endblock %}
