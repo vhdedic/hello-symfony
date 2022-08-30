@@ -91,4 +91,19 @@ class PostController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    #[Route('/post/delete/{id}', methods: ['GET', 'DELETE'], name: 'app_post_delete')]
+    public function delete($id): Response
+    {
+        $post = $this->postRepository->find($id);
+
+        if ($post->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        $this->em->remove($post);
+        $this->em->flush();
+
+        return $this->redirectToRoute('app_post_index');
+    }
 }

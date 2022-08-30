@@ -5,11 +5,16 @@
 {% block body %}
     <h1 class="my-4">Edit Post</h1>
     <div class="border p-3 bg-light">
+        
         {{ form_start(form) }}
+            
             {{ form_rest(form) }}
             
-            <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
-            <a class="btn btn-outline-secondary" href="{{ path('app_post_show', {'id': post.id}) }}">Cancel</a>
+            <button type="submit" class="btn btn-success" formnovalidate>Save</button>
+            <a class="btn btn-secondary" href="{{ path('app_post_show', {'id': post.id}) }}">Cancel</a>
+            <a class="btn btn-danger" href="{{ path('app_post_delete', {'id': post.id}) }}">Delete</a>
+        
         {{ form_end(form) }}
+        
     </div>
 {% endblock %}
