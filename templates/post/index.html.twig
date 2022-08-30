@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="my-4">Posts</h1>
     <hr />
-    {% for post in posts %}
+    {% for post in posts | sort((a, b) => b.updated <=> a.updated)  %}
         <div>
             <h2>
                 <a href="{{ path('app_post_show', {'id': post.id}) }}" class="text-decoration-none">
@@ -13,7 +13,7 @@
                 </a>
             </h2>
             <span class="fw-bold">
-                {{ post.user.username }} - {{ post.created | ago }}
+                {{ post.user.username }} - {{ post.updated | ago }}
             </span>
             <p>
                 {{ post.body | slice(0,100) }}

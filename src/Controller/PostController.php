@@ -63,4 +63,32 @@ class PostController extends AbstractController
             'post' => $post,
         ]);
     }
+
+    #[Route('/post/edit/{id}', name: 'app_post_edit')]
+    public function edit($id, Request $request): Response
+    {
+        $post = $this->postRepository->find($id);
+
+        $form = $this->createForm(PostFormType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $post->setTitle($form->get('title')->getData());
+            $post->setBody($form->get('body')->getData());
+            $post->setUser($this->getUser());
+            
+            $this->em->persist($post);
+            $this->em->flush();
+
+            return $this->redirect($this->generateUrl('app_post_show', [
+                'id' => $id
+            ]));
+        } 
+        
+        return $this->render('post/edit.html.twig', [
+            'post' => $post,
+            'form' => $form->createView()
+        ]);
+    }
 }

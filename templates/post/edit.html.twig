@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Post{% endblock %}
+
+{% block body %}
+    <h1 class="my-4">Edit Post</h1>
+    <div class="border p-3 bg-light">
+        {{ form_start(form) }}
+            {{ form_rest(form) }}
+            
+            <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+            <a class="btn btn-outline-secondary" href="{{ path('app_post_show', {'id': post.id}) }}">Cancel</a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

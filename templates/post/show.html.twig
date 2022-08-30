@@ -6,8 +6,14 @@
     <h1 class="my-4">{{ post.title }}</h1>
     
     <span class="fw-bold">
-        {{ post.user.username }} - {{ post.created | ago }}
+        {{ post.user.username }} - {{ post.updated | ago }}
     </span>
+
+    {% if app.user and app.user.id == post.user.id %}
+        <a href="{{ path('app_post_edit', {'id': post.id}) }}" class="text-decoration-none">
+            edit
+        </a>
+    {% endif %}
 
     <p class="mt-2">{{ post.body }}</p>
 {% endblock %}
