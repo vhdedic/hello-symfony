@@ -34,6 +34,8 @@ class PostController extends AbstractController
     #[Route('/post/create', name: 'app_post_create')]
     public function create(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $post = new Post;
 
         $form = $this->createForm(PostFormType::class, $post);
@@ -95,6 +97,10 @@ class PostController extends AbstractController
     {
         $post = $this->postRepository->find($id);
 
+        if ($post->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $form = $this->createForm(PostFormType::class, $post);
         $form->handleRequest($request);
 
@@ -132,6 +138,4 @@ class PostController extends AbstractController
 
         return $this->redirectToRoute('app_post_index');
     }
-
-    
 }

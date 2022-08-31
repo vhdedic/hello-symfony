@@ -23,6 +23,10 @@ class CommentController extends AbstractController
     {
         $comment = $this->commentRepository->find($id);
 
+        if ($comment->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
@@ -50,6 +54,10 @@ class CommentController extends AbstractController
     public function delete($id): Response
     {
         $comment = $this->commentRepository->find($id);
+
+        if ($comment->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException();
+        }
 
         $this->em->remove($comment);
         $this->em->flush();
