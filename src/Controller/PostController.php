@@ -132,4 +132,6 @@ class PostController extends AbstractController
 
         return $this->redirectToRoute('app_post_index');
     }
+
+    
 }

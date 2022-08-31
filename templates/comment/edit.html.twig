@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Comment{% endblock %}
+
+{% block body %}
+<h1 class="my-4">Edit Comment</h1>
+    <div class="border p-3 bg-light">
+        {{ form_start(form) }}
+            <p>Comment Text</p>
+            {{ form_rest(form) }}
+            <button type="submit" class="btn btn-success" formnovalidate>Save</button>
+            <a class="btn btn-secondary" href="{{ path('app_post_show', {'id': comment.post.id}) }}">Cancel</a>
+            <a class="btn btn-danger" href="{{ path('app_comment_delete', {'id': comment.id}) }}">Delete</a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
