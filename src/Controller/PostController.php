@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\CommentFormType;
 use App\Form\PostFormType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,10 +60,34 @@ class PostController extends AbstractController
     public function show($id, Request $request): Response
     {
         $post = $this->postRepository->find($id);
+        $comments = $post->getComments();
+
+        $newComment = new Comment;
+
+        $form = $this->createForm(CommentFormType::class, $newComment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $newComment->setBody($form->get('body')->getData());
+            $newComment->setPost($post);
+            $newComment->setUser($this->getUser());
+
+            $this->em->persist($newComment);
+            $this->em->flush();
+
+            return $this->redirect($this->generateUrl('app_post_show', [
+                    'id' => $id
+                ])
+            );
+        }
 
         return $this->render('post/show.html.twig', [
             'post' => $post,
+            'comments' => $comments,
+            'form' => $form->createView()
         ]);
+
     }
 
     #[Route('/post/edit/{id}', name: 'app_post_edit')]

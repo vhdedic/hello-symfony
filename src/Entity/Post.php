@@ -31,7 +31,7 @@ class Post
     private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
-    private Collection $commments;
+    private Collection $comments;
 
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -43,7 +43,7 @@ class Post
 
     public function __construct()
     {
-        $this->commments = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -90,24 +90,24 @@ class Post
     /**
      * @return Collection<int, Comment>
      */
-    public function getCommments(): Collection
+    public function getComments(): Collection
     {
-        return $this->commments;
+        return $this->comments;
     }
 
-    public function addCommment(Comment $commment): self
+    public function addComment(Comment $commment): self
     {
-        if (!$this->commments->contains($commment)) {
-            $this->commments->add($commment);
+        if (!$this->comments->contains($commment)) {
+            $this->comments->add($commment);
             $commment->setPost($this);
         }
 
         return $this;
     }
 
-    public function removeCommment(Comment $commment): self
+    public function removeComment(Comment $commment): self
     {
-        if ($this->commments->removeElement($commment)) {
+        if ($this->comments->removeElement($commment)) {
             // set the owning side to null (unless already changed)
             if ($commment->getPost() === $this) {
                 $commment->setPost(null);

@@ -16,4 +16,27 @@
     {% endif %}
 
     <p class="mt-2">{{ post.body }}</p>
+    <hr />
+    <h2 class="mb-4">Comments</h2>
+    {% if comments|length > 0 %}
+        {% for comment in comments %}
+            <div class="border p-3 my-4">
+                <span class="fw-bold">
+                    {{ comment.user.username }} - {{ comment.created | ago }}
+                </span>
+                <p>{{ comment.body }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+       No comments yet.
+    {% endif %}
+    {% if app.user %}
+        <div class="border p-3 my-4 bg-light">
+            <p>Add New Comment</p>
+            {{ form_start(form) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-success" formnovalidate>Save</button>
+           {{ form_end(form) }}
+        </div>
+    {% endif %}
 {% endblock %}
