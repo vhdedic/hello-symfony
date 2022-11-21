@@ -16,29 +16,29 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ path('app_post_index') }}">Hello Symfony</a>
-                <ul class="nav navbar-nav ms-auto">
-                    {% if is_granted('ROLE_USER') %}
-                        <li>
-                            <a class="nav-link text-right" href="{{ path('app_post_create') }}">Add New Post</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-right" href="{{ path('app_logout') }}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a class="nav-link text-right" href="{{ path('app_register') }}">Register</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-right" href="{{ path('app_login') }}">Login</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
+        <nav class="p-3 bg-black text-white">
+            <ul class="flex">
+                <li>
+                    <a class="inline px-3 py-1 font-extrabold" href="{{ path('app_post_index') }}">Hello Symfony</a>
+                </li>
+            {% if is_granted('ROLE_USER') %}
+                <li>
+                    <a class="inline px-3 py-1" href="{{ path('app_post_create') }}">Add New Post</a>
+                </li>
+                <li>
+                    <a class="inline px-3 py-1" href="{{ path('app_logout') }}">Logout</a>
+                </li>
+            {% else %}
+                <li>
+                    <a class="inline px-3 py-1" href="{{ path('app_register') }}">Register</a>
+                </li>
+                <li>
+                    <a class="inline px-3 py-1" href="{{ path('app_login') }}">Login</a>
+                </li>
+            {% endif %}
+            </ul>
         </nav>
-        <div class="container">
+        <div class="container mx-auto py-3">
             {% block body %}{% endblock %}
         </div>
     </body>
