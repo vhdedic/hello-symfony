@@ -2,3 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+
+    p {
+        @apply my-4
+    }
+
+    span {
+        @apply font-semibold
+    }
+
+    hr {
+        @apply bg-black h-px border-0
+    }
+
+    h1 {
+        @apply font-semibold text-3xl my-4
+    }
+
+    h2 {
+        @apply font-semibold text-2xl my-4
+    }
+
+    form {
+        @apply border border-black p-3 my-3
+    }
+
+    input {
+        @apply form-input border border-black block w-full my-3
+    }
+
+    textarea {
+        @apply form-textarea border border-black block w-full my-3
+    }
+
+    label {
+        @apply  font-semibold text-black text-base my-4
+    }
+
+    button {
+        @apply font-semibold border border-black p-1.5 hover:bg-black hover:text-white my-3
+    }
+}

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1 class="font-semibold text-3xl my-4">Posts</h1>
-    <hr class="bg-black h-px border-0" />
+    <hr />
     {% for post in posts | sort((a, b) => b.updated <=> a.updated)  %}
         <div class="my-4">
             <h2 class="text-2xl my-2">
@@ -18,7 +18,7 @@
             <p class="mb-4">
                 {{ post.body | slice(0,100) }}
             </p>
-            <hr class="bg-black h-px border-0"/>
+            <hr />
         </div>
     {% endfor %}
 {% endblock %}

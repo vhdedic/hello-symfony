@@ -15,7 +15,6 @@ class CommentFormType extends AbstractType
         $builder
             ->add('body', TextareaType::class, [
                 'attr' => ['rows' => '20'],
-                'label' => false
             ])
         ;
     }

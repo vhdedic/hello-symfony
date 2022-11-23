@@ -3,14 +3,14 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Register</h1>
-    <div class="border p-3 bg-light">
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.username) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.password) }}
-            
-            <button type="submit" class="btn btn-success"  formnovalidate>Register</button>
-        {{ form_end(registrationForm) }}
-    </div>
+    <h1 class="font-semibold text-3xl my-4">Register</h1>
+    
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.password) }}
+        
+        <button type="submit" formnovalidate>Register</button>
+    {{ form_end(registrationForm) }}
+    
 {% endblock %}

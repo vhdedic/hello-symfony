@@ -3,29 +3,29 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">{{ post.title }}</h1>
+    <h1>{{ post.title }}</h1>
     
-    <span class="fw-bold">
+    <span>
         {{ post.user.username }} - {{ post.updated | ago }}
     </span>
 
     {% if app.user and app.user.id == post.user.id %}
-        <a href="{{ path('app_post_edit', {'id': post.id}) }}" class="text-decoration-none">
+        <a href="{{ path('app_post_edit', {'id': post.id}) }}">
             edit
         </a>
     {% endif %}
 
     <p class="mt-2">{{ post.body }}</p>
     <hr />
-    <h2 class="mb-4">Comments</h2>
+    <h2 class="">Comments</h2>
     {% if comments|length > 0 %}
         {% for comment in comments %}
-            <div class="border p-3 my-4">
-                <span class="fw-bold">
+            <div class="border border-black p-3">
+                <span>
                     {{ comment.user.username }} - {{ comment.created | ago }}
                 </span>
                 {% if app.user and app.user.id == comment.user.id %}
-                    <a href="{{ path('app_comment_edit', {'id': comment.id}) }}" class="text-decoration-none">
+                    <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">
                         edit
                     </a>
                 {% endif %}
@@ -36,12 +36,11 @@
        No comments yet.
     {% endif %}
     {% if app.user %}
-        <div class="border p-3 my-4 bg-light">
-            <p>Add New Comment</p>
-            {{ form_start(form) }}
-                {{ form_rest(form) }}
-                <button type="submit" class="btn btn-success" formnovalidate>Save</button>
-           {{ form_end(form) }}
-        </div>
+        {{ form_start(form) }}
+            {{ form_label(form.body, 'Add New Comment') }}
+            {{ form_widget(form.body) }}
+            <button type="submit" formnovalidate>Save</button>
+        {{ form_end(form) }}
+        
     {% endif %}
 {% endblock %}

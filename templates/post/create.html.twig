@@ -4,15 +4,14 @@
 
 {% block body %}
     
-    <h1 class="my-4">Create New Post</h1>
-    <div class="border p-3 bg-light">
-        {{ form_start(form) }}
-            {{ form_rest(form) }}
+    <h1>Create New Post</h1>
+    {{ form_start(form) }}
+        {{ form_rest(form) }}
 
-            <button type="submit" class="btn btn-success" formnovalidate>Save</button>
-            <a class="btn btn-secondary" href="{{ path('app_post_index') }}">Cancel</a>
-        {{ form_end(form) }}
-    </div>
-
+        <button type="submit" formnovalidate>Save</button>
+        <a href="{{ path('app_post_index') }}">
+            <button type="button">Cancel</button>
+        </a>
+    {{ form_end(form) }}
     
 {% endblock %}

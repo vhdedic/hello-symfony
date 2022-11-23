@@ -18,7 +18,6 @@ class PostFormType extends AbstractType
             ->add('body', TextareaType::class, [
                 'attr' => ['rows' => '20'],
             ])
-            
         ;
     }
 

@@ -10,12 +10,12 @@
     {% endif %}
 
     <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="email" class="form-control" autocomplete="email" required autofocus>
+        <label for="email">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="email" autocomplete="email" required autofocus>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
     </div>
     
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
