@@ -3,14 +3,14 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1 class="font-semibold text-3xl my-4">Register</h1>
+    <h1 class="custom-page-title">Register</h1>
     
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm, { 'attr': {'class': 'custom-form custom-border'} }) }}
         {{ form_row(registrationForm.username) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.password) }}
         
-        <button type="submit" formnovalidate>Register</button>
+        <button type="submit" class="custom-button mt-3" formnovalidate>Register</button>
     {{ form_end(registrationForm) }}
     
 {% endblock %}

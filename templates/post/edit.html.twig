@@ -3,17 +3,17 @@
 {% block title %}Edit Post{% endblock %}
 
 {% block body %}
-    <h1 class="my-4">Edit Post</h1>
-    {{ form_start(form) }}
+    <h1 class="custom-page-title">Edit Post</h1>
+    {{ form_start(form, { 'attr': {'class': 'custom-form custom-border'} }) }}
         
         {{ form_rest(form) }}
         
-        <button type="submit" formnovalidate>Save</button>
+        <button type="submit" class="custom-button" formnovalidate>Save</button>
         <a href="{{ path('app_post_show', {'id': post.id}) }}">
-            <button type="button">Cancel</button>
+            <button type="button" class="custom-button">Cancel</button>
         </a>
         <a href="{{ path('app_post_delete', {'id': post.id}) }}">
-            <button type="button">Delete</button>
+            <button type="button" class="custom-button-danger">Delete</button>
         </a>
     
     {{ form_end(form) }}

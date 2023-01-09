@@ -4,43 +4,77 @@
 
 @layer base {
 
-    p {
-        @apply my-4
+    .custom-container {
+        @apply container mx-auto py-3
     }
 
-    span {
-        @apply font-semibold
+    .custom-nav {
+        @apply p-3 border-b border-black bg-white shadow-lg sticky top-0
     }
 
-    hr {
-        @apply bg-black h-px border-0
+    .custom-nav-brand {
+        @apply inline px-3 py-1 font-extrabold
     }
 
-    h1 {
-        @apply font-semibold text-3xl my-4
+    .custom-nav-link {
+        @apply inline px-3 py-1 hover:text-sky-500
     }
 
-    h2 {
-        @apply font-semibold text-2xl my-4
+    .custom-page-title {
+        @apply my-4 text-3xl font-extrabold 
     }
 
-    form {
-        @apply border border-black p-3 my-3
+    .custom-link-post {
+        @apply hover:bg-slate-50 p-3 block -ml-3
     }
 
-    input {
-        @apply form-input border border-black block w-full my-3
+    .custom-post-title {
+        @apply my-1 font-extrabold
+    }
+
+    .custom-post-data {
+        @apply text-slate-400
+    }
+
+    .custom-post-body {
+        @apply m-0
+    }
+
+    .custom-post-subtitle {
+        @apply text-2xl my-5 font-extrabold
+    }
+
+    .custom-post-comment {
+        @apply rounded-md p-3 shadow-lg
+    }
+
+    .custom-border {
+        @apply border border-black
+    }
+
+    .custom-form {
+        @apply p-3 my-3 shadow-lg rounded-md
+    }
+
+    label, .custom-form-label {
+        @apply font-semibold text-black text-base my-4 
+    }
+
+    .custom-button {
+        @apply bg-sky-500 shadow text-white rounded-md text-sm py-2 font-semibold px-3 hover:bg-sky-600 mt-4
+    }
+
+    .custom-button-danger {
+        @apply bg-red-500 shadow text-white rounded-md text-sm py-2 font-semibold px-3 hover:bg-red-600 mt-4
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=password]  {
+        @apply form-input border border-black block w-full my-3 rounded-md
     }
 
     textarea {
-        @apply form-textarea border border-black block w-full my-3
-    }
-
-    label {
-        @apply  font-semibold text-black text-base my-4
-    }
-
-    button {
-        @apply font-semibold border border-black p-1.5 hover:bg-black hover:text-white my-3
+        @apply form-textarea border border-black block w-full mt-3 rounded-md
     }
 }

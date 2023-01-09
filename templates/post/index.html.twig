@@ -3,22 +3,17 @@
 {% block title %}Posts{% endblock %}
 
 {% block body %}
-    <h1 class="font-semibold text-3xl my-4">Posts</h1>
-    <hr />
+    <h1 class="custom-page-title">Posts</h1>
+    
     {% for post in posts | sort((a, b) => b.updated <=> a.updated)  %}
-        <div class="my-4">
-            <h2 class="text-2xl my-2">
-                <a href="{{ path('app_post_show', {'id': post.id}) }}" class="">
-                    {{ post.title }}
-                </a>
-            </h2>
-            <span class="font-extrabold text-base">
+        <a href="{{ path('app_post_show', {'id': post.id}) }}" class="custom-link-post">
+            <h2 class="custom-post-title">{{ post.title }}</h2>
+            <span class="custom-post-data">
                 {{ post.user.username }} - {{ post.updated | ago }}
             </span>
-            <p class="mb-4">
-                {{ post.body | slice(0,100) }}
+            <p class="custom-post-body">
+                {{ post.body | length > 100 ? post.body | slice(0,100) ~ '...' : post.body }}
             </p>
-            <hr />
-        </div>
+        </a>
     {% endfor %}
 {% endblock %}

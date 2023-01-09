@@ -3,43 +3,40 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-    <h1>{{ post.title }}</h1>
+    <h1 class="custom-page-title">{{ post.title }}</h1>
     
-    <span>
+    <span class="custom-post-data">
         {{ post.user.username }} - {{ post.updated | ago }}
     </span>
-
+    <p class="custom-post-body">{{ post.body }}</p>
     {% if app.user and app.user.id == post.user.id %}
         <a href="{{ path('app_post_edit', {'id': post.id}) }}">
-            edit
+            <button type="button" class="custom-button">Edit</button>
         </a>
     {% endif %}
-
-    <p class="mt-2">{{ post.body }}</p>
-    <hr />
-    <h2 class="">Comments</h2>
+    <h2 class="custom-post-subtitle">Comments</h2>
     {% if comments|length > 0 %}
         {% for comment in comments %}
-            <div class="border border-black p-3">
-                <span>
+            <div class="custom-border custom-post-comment">
+                <span class="custom-post-data">
                     {{ comment.user.username }} - {{ comment.created | ago }}
                 </span>
+                <p>{{ comment.body }}</p>
                 {% if app.user and app.user.id == comment.user.id %}
                     <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">
-                        edit
+                        <button type="button" class="custom-button">Edit</button>
                     </a>
                 {% endif %}
-                <p>{{ comment.body }}</p>
             </div>
         {% endfor %}
     {% else %}
        No comments yet.
     {% endif %}
     {% if app.user %}
-        {{ form_start(form) }}
-            {{ form_label(form.body, 'Add New Comment') }}
+        {{ form_start(form, { 'attr': {'class': 'custom-form custom-border'} }) }}
+            {{ form_label(form.body, 'Add New Comment', { 'attr': {'class': 'custom-form-label' }}) }}
             {{ form_widget(form.body) }}
-            <button type="submit" formnovalidate>Save</button>
+            <button type="submit" class="custom-button" formnovalidate>Save</button>
         {{ form_end(form) }}
         
     {% endif %}
