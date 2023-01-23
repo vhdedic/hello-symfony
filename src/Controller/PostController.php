@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route(name: 'app_post_')]
 class PostController extends AbstractController
 {
     public function __construct(EntityManagerInterface $em, PostRepository $postRepository)
@@ -21,7 +22,7 @@ class PostController extends AbstractController
         $this->postRepository = $postRepository;
     }
     
-    #[Route('/', name: 'app_post_index')]
+    #[Route('/', name: 'index')]
     public function index(): Response
     {
         $posts = $this->postRepository->findAll();
@@ -31,7 +32,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/create', name: 'app_post_create')]
+    #[Route('/posts/create', name: 'create')]
     public function create(Request $request): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -58,7 +59,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/show/{id}', name: 'app_post_show')]
+    #[Route('/posts/{id}/show', name: 'show')]
     public function show($id, Request $request): Response
     {
         $post = $this->postRepository->find($id);
@@ -92,7 +93,7 @@ class PostController extends AbstractController
 
     }
 
-    #[Route('/post/edit/{id}', name: 'app_post_edit')]
+    #[Route('/posts/{id}/edit', name: 'edit')]
     public function edit($id, Request $request): Response
     {
         $post = $this->postRepository->find($id);
@@ -124,7 +125,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/delete/{id}', methods: ['GET', 'DELETE'], name: 'app_post_delete')]
+    #[Route('/posts/{id}/delete', methods: ['GET', 'DELETE'], name: 'delete')]
     public function delete($id): Response
     {
         $post = $this->postRepository->find($id);

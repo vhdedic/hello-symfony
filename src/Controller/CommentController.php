@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/commentss', name: 'app_comment_')]
 class CommentController extends AbstractController
 {
     public function __construct(EntityManagerInterface $em, CommentRepository $commentRepository)
@@ -18,7 +19,7 @@ class CommentController extends AbstractController
         $this->commentRepository = $commentRepository;
     }
 
-    #[Route('/comment/edit/{id}', name: 'app_comment_edit')]
+    #[Route('/comment/{id}/edit', name: 'edit')]
     public function edit($id, Request $request): Response
     {
         $comment = $this->commentRepository->find($id);
@@ -50,7 +51,7 @@ class CommentController extends AbstractController
         ]);
     }
 
-    #[Route('/comment/delete/{id}', methods: ['GET', 'DELETE'], name: 'app_comment_delete')]
+    #[Route('/comment/{id}/delete', methods: ['GET', 'DELETE'], name: 'delete')]
     public function delete($id): Response
     {
         $comment = $this->commentRepository->find($id);
@@ -62,7 +63,7 @@ class CommentController extends AbstractController
         $this->em->remove($comment);
         $this->em->flush();
 
-        return $this->redirect($this->generateUrl('app_post_show', [
+        return $this->redirect($this->generateUrl('show', [
             'id' => $comment->getPost()->getId()
         ]));
     }
